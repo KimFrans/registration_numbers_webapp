@@ -1,0 +1,112 @@
+.header{
+    text-align: center;
+    color: black;
+    font-weight: bold;
+    background-color: palevioletred;
+    padding-bottom: 0.3%;
+    padding-top: 1%;
+}
+
+body{
+    background-color: plum;
+    box-sizing: border-box;
+}
+
+.reg-name {
+    text-align: center;
+}
+
+.errorMessage{
+    margin-left: 35%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    color: red;
+}
+
+.text-box{
+    margin-left: 30%;
+    font-size: 20px;
+}
+
+.message {
+    margin-left: 30%;
+    padding-top: 1%;
+    color: rgb(9, 0, 128)
+}
+
+.radio-buttons{
+    margin-left: 5%;
+}
+
+.radio-buttons .radio-inline{
+    padding-right: 5%;
+    font-size: 20px;
+    font-family: fantasy;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.radio-inline{
+    display: inline;
+}
+
+.buttons{
+    display: inline;
+}
+
+.buttons .add{
+    border-radius: 20px;
+    margin-left: 30%;
+    font-size: 20px;
+    margin-top: 2%;
+}
+
+
+.buttons .add:hover{
+    background-color: red;
+    color: wheat;
+}
+
+.display-button .show{
+    margin-top: 2%;
+    margin-left: 25%;
+    border-radius: 20px;
+    margin-right: 5%;
+    font-size: 20px;
+}
+
+.display-button .show:hover{
+    background-color: red;
+    color: white;
+}
+
+.buttons .clear{
+    margin-left: 5%;
+    border-radius: 20px;
+    margin-right: 10%;
+    font-size: 20px;
+}
+
+.buttons .clear:hover{
+    background-color: red;
+    color: white;
+}
+
+#reg-display li{
+    padding-top: 1.5%;
+    padding-bottom: 1.5%;
+    padding-right: 1.5%;
+    padding-left: 1.5%;
+    display: inline-block;
+    border-radius: 15px;
+    border-color: black;
+    border: solid black;
+    color: black;
+    background-color: yellow;
+    font-size: 20px;
+    list-style: none;
+    margin-right: 2%;
+}
+.heading{
+    text-align: center
+}
