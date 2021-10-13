@@ -9,17 +9,18 @@ const regRoute = require('./routes/registration-routes')
 // should we use a SSL connection
 let useSSL = false;
 let local = process.env.LOCAL || false;
-if (process.env.DATABASE_URL && !local){
+if (process.env.DATABASE_URL && !local) {
     useSSL = true;
 }
 
 // // db connection
-const connectionString = process.env.DATABASE_URL || 'postgresql://codex:pg123@localhost:5432/my_registrations';
 
 const pool = new Pool({
-    connectionString,
-    
-    ssl: { rejectUnauthorized: false }
+    connectionString: connectionString = process.env.DATABASE_URL || 'postgresql://codex:pg123@localhost:5432/my_registrations',
+    ssl: {
+        useSSL,
+        rejectUnauthorized: false
+    }
 });
 
 
@@ -42,8 +43,6 @@ app.use(bodyParser.json())
 app.get('/', registrationRoute.home);
 // app.post('/reg_number', registrationRoute.getReg);
 
-
-    
 
 
 const PORT = process.env.PORT || 3031
