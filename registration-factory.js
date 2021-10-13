@@ -2,10 +2,10 @@ const { Pool } = require("pg");
 
 module.exports = function registrations(pool) {
 
-    var regNum = ""
-    var regList = []
-    var regOb = {}
-    var regCount = 0
+    // var regNum = ""
+    // var regList = []
+    // var regOb = {}
+    // var regCount = 0
     var alreadyAddedError = ""
     var addedMessage = ""
     var clearMessage = ""
@@ -13,66 +13,63 @@ module.exports = function registrations(pool) {
     var empty = "Please enter a registration number"
     var tooMany = ""
 
-    capeArr = []
-    stellArr = []
-    bellArr = []
-    paarArr = []
+    // async function getRegNumber(reg) {
+    //     regNum = reg.toUpperCase()
+    //     console.log(regNum)
+    // }
 
 
-    async function getRegNumber(reg) {
-        regNum = reg.toUpperCase()
-        console.log(regNum)
-    }
-
-    function getArr() {
-        return regList
-    }
-
-    function getCape() {
-        return capeArr
-    }
-
-    function getStell() {
-        return stellArr
-    }
-
-    function getBell() {
-        return bellArr
-    }
-
-    function getPaar() {
-        return paarArr
-    }
-
-    function addRegNumber() {
+    async function addRegNumber(regNum) {
         addedMessage = ""
 
-        if (!regList.includes(regNum)) {
-            if (/[A-Z]{2}\s[0-9]{3}\-[0-9]{3}/g.test(regNum) || /[A-Z]{2}\s[0-9]{5}/g.test(regNum) || /[A-Z]{2}\-[0-9]{3}\-[0-9]{3}/g.test(regNum)) {
+        // if (!regList.includes(regNum)) {
+            if (/[A-Z]{2}\s[0-9]{3}\-, next[0-9]{3}/g.test(regNum) || /[A-Z]{2}\s[0-9]{5}/g.test(regNum) || /[A-Z]{2}\-[0-9]{3}\-[0-9]{3}/g.test(regNum)) {
                 if (regNum.length > 8 && regNum.length <= 10) {
-                    regList.push(regNum)
-                    regCount++
+                    // regList.push(regNum)
+                    // regCount++
                     addedMessage = "Your registration number has been added"
-                    return true
+                    // return true
                 }
                 else {
                     addedMessage = "not enough characters more or less!"
-                    return false
+                    // return false
                 }
                 regNum = ''
             }
             else if (!/[A-Z]{2}\s[0-9]{3}\-[0-9]{3}/g.test(regNum) || !/[A-Z]{2}\s[0-9]{5}/g.test(regNum) || !/[A-Z]{2}\-[0-9]{3}\-[0-9]{3}/g.test(regNum)) {
                 addedMessage = "does not match check the format!"
-                return false
+                // return false
             }
 
-        }
-        else if (regList.includes(regNum)) {
-            addedMessage = "This registration has already been added!"
-            return false
-        }
+        // }
+        // else if (regList.includes(regNum)) {
+        //     addedMessage = "This registration has already been added!"
+        //     return false
+        // }
+
+        // return regNum;
+        return addedMessage;
 
 
+    }
+
+    async function poolNameIn(regEntered){
+
+        const dbAccess = await pool.query('SELECT * FROM regPlates WHERE reg = $1', [regEntered]);
+
+        if(dbAccess.rows.length === 0){
+            await pool.query('insert into regPlates (reg) values($1)', [regEntered])
+        }
+        else{
+            await pool.query('UPDATE regPlates WHERE reg = $1 ', [regEntered])
+        }
+
+    }
+
+    async function getDBreg(){
+        const gettingReg = await pool.query('SELECT * FROM regPlates') 
+
+        return gettingReg.rows;
     }
 
     function filterRegistration(radioCheck) {
@@ -109,15 +106,15 @@ module.exports = function registrations(pool) {
     }
 
     function clearTheCountButton() {
-        regCount = 0
-        regList = []
-        localStorage.clear()
+        // regCount = 0
+        // regList = []
+        // localStorage.clear()
         clearMessage = "All registrations have been cleared!"
     }
 
-    function setArray(localStoragevalue) {
-        regList = localStoragevalue
-    }
+    // function setArray(localStoragevalue) {
+    //     regList = localStoragevalue
+    // }
 
 
     function values() {
@@ -136,18 +133,13 @@ module.exports = function registrations(pool) {
     }
 
     return {
-        values,
-        getRegNumber,
+        // getRegNumber,
         addRegNumber,
-        getArr,
         clearTheCountButton,
         filterRegistration,
-        getArr,
-        getBell,
-        getStell,
-        getPaar,
-        getCape,
-        setArray,
+        poolNameIn,
+        getDBreg,
+        values,
     }
 
 }

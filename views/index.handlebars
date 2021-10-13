@@ -46,7 +46,7 @@
         </form>
 
         <div class="message">
-            <span class="outputMessage"></span>
+            <span class="outputMessage">{{outputMessage}}</span>
         </div>
 
         <form action="/reg_town" method="get">
@@ -71,11 +71,16 @@
 
         <div id="reg-display">
             <ul id="regs">
-
+                {{#each registration}}
+                <li>{{registrationPlate}}</li>
+                {{/each}}
             </ul>
         </div>
     </div>
 
+    
+
 </body>
 
 </html>
+

@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const registrationWeb = require('./registration-factory');
 const pg = require('pg')
 const Pool = pg.Pool;
-// const regRoute = require('./routes/registration-routes')
+const regRoute = require('./routes/registration-routes')
 
 // should we use a SSL connection
 let useSSL = false;
@@ -24,8 +24,8 @@ const pool = new Pool({
 
 
 const app = express();
-// const registrationName = registrationWeb(pool)
-// const registrationRoute = regRoute(registrationName)
+const registrationName = registrationWeb(pool)
+const registrationRoute = regRoute(registrationName)
 
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main', layoutsDir: __dirname + '/views/layouts' }));
@@ -39,14 +39,13 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
-app.get('/', async function (req,res){
-    res.render('index')
-});
+app.get('/', registrationRoute.home);
+app.post('/reg_number', registrationRoute.getReg);
 
     
 
 
-const PORT = process.env.PORT || 3030
+const PORT = process.env.PORT || 3031
 
 app.listen(PORT, function () {
     console.log("App started at port:", PORT)
