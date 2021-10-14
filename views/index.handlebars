@@ -15,24 +15,15 @@
             <h1>Registration Numbers</h1>
         </div>
 
-        {{!-- <div class="reg-name">
-            <h3>Please enter a registPhraseration number</h3>
+        <div class="reg-name">
+            <h5>Please enter a registration number</h5>
             <p>
-                Formats that are accepted :
-            </p>
-            <p>
-                CA 123-456
-            </p>
-            <p>
-                CY 123456
-            </p>
-            <p>
+                Formats that are accepted : <br>
+                CA 123-456 <br>
+                CY 123456 <br>
                 CJ-123-456
             </p>
-        </div> --}}
-
-        <div class="heading">
-            <h3>Please enter a registration number</h3>
+            <p>NB! Registrations must be entered in CAPS</p>
         </div>
 
         <div class="errorMessage">
@@ -41,13 +32,13 @@
 
         <form action="/reg_number" method="post">
             <label for="reg_num">Registration Number: </label>
-            <input class="textNum" type="text" placeholder="enter a registration" />
+            <input class="textNum" name="reg" type="text" placeholder="enter a registration">
             <button class="add" type="submit" name="button">Add</button>
         </form>
 
-        <div class="message">
+        {{!-- <div class="message">
             <span class="outputMessage">{{outputMessage}}</span>
-        </div>
+        </div> --}}
 
         <form action="/reg_town" method="get">
             <label class="radio-inline">
@@ -68,11 +59,15 @@
             <button class="show" type="submit" name="show-button">Show Registration</button>
         </form>
 
+        <form action="/clear" method="post">
+        <button class="clear" type="submit" name="button">Clear Registrations</button>
+        </form>
+
 
         <div id="reg-display">
             <ul id="regs">
                 {{#each registration}}
-                <li>{{registrationPlate}}</li>
+                <li>{{this.reg}}</li>
                 {{/each}}
             </ul>
         </div>

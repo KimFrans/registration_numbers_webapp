@@ -1,12 +1,12 @@
 CREATE TABLE regTown(
     id SERIAL PRIMARY KEY,
-    townName VARCHAR(100) NOT NULL,
-    townSymbol VARCHAR(100) NOT NULL
+    townName text not null,
+    townSymbol text not null
 );
 
 CREATE TABLE regPlates(
     id SERIAL PRIMARY KEY,
-    reg VARCHAR(100) NOT NULL,
+    reg text not null,
     regTown_id int,
 	foreign key (regTown_id) references regTown(id)
 );

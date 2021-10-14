@@ -41,7 +41,8 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 app.get('/', registrationRoute.home);
-// app.post('/reg_number', registrationRoute.getReg);
+app.post('/reg_number', registrationRoute.getReg);
+app.post('/clear', registrationRoute.deleteReg)
 
 
 

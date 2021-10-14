@@ -3,7 +3,7 @@ module.exports = function registrationRoutes(registrationName) {
     async function home(req, res) {
         try {
             res.render('index',{
-                registrationPlate : await registrationName.getDBreg()
+                registration : await registrationName.getDBreg()
             })
         }
         catch (err) {
@@ -13,20 +13,16 @@ module.exports = function registrationRoutes(registrationName) {
     }
 
     async function getReg(req, res) {
-        const  databaseReg = req.body.regNum;
+        const  databaseReg = req.body.reg;
         try {
-            
-            // await registrationName.getRegNumber(req.body.reg)
-            // await registrationName.addRegNumber()
 
-            if (req.body.regNum != "") {
-                await registrationName.addRegNumber(req.body.regNum)
+            if (req.body.reg != "") {
                 await registrationName.poolNameIn(databaseReg);
 
-                console.log(databaseReg)
+                // console.log(databaseReg)
 
                 res.render('index', {
-                    outputMessage: await registrationName.values().addMessage,
+                    errorMess: await registrationName.values().addMessage,
                     registration: await registrationName.getDBreg()
 
                 });
@@ -44,9 +40,23 @@ module.exports = function registrationRoutes(registrationName) {
         }
     }
 
+    async function deleteReg(req, res){
+        try{
+            var clearRows = await registrationName.deleteRecords();
+            res.render('index', {
+                clearRows,
+                errorMess: await registrationName.values().cleared
+            })
+        }
+        catch(err){
+            console.log(err)
+        }
+    }
+
     return{
         home,
         getReg,
+        deleteReg,
     }
 
 
