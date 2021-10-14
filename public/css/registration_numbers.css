@@ -3,8 +3,8 @@
     color: black;
     font-weight: bold;
     background-color: palevioletred;
-    padding-bottom: 0.3%;
-    padding-top: 1%;
+    /* padding-bottom: 0.3%; */
+    /* padding-top: 1%; */
 }
 
 body{
@@ -54,15 +54,15 @@ body{
     display: inline;
 }
 
-.buttons .add{
+/* .buttons .add{
     border-radius: 20px;
     margin-left: 30%;
     font-size: 20px;
     margin-top: 2%;
-}
+} */
 
 
-.buttons .add:hover{
+/* .buttons .add:hover{
     background-color: red;
     color: wheat;
 }
@@ -78,19 +78,19 @@ body{
 .display-button .show:hover{
     background-color: red;
     color: white;
-}
+} */
 
-.buttons .clear{
+/* .buttons .clear{
     margin-left: 5%;
     border-radius: 20px;
     margin-right: 10%;
     font-size: 20px;
-}
+} */
 
-.buttons .clear:hover{
+/* .buttons .clear:hover{
     background-color: red;
     color: white;
-}
+} */
 
 #reg-display li{
     padding-top: 1.5%;

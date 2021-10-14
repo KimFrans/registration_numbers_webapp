@@ -10,9 +10,9 @@
 
 <body>
 
-    <div class="container">
+    {{!-- <div class="container"> --}}
         <div class="header">
-            <h1>Registration Numbers</h1>
+            <h3>Registration Numbers</h3>
         </div>
 
         <div class="reg-name">
@@ -59,8 +59,22 @@
             <button class="show" type="submit" name="show-button">Show Registration</button>
         </form>
 
+        {{!-- <div class="buttons">
+            <form action="/show" method="post">
+                <button class="show" type="submit" name="button">Show All</button>
+            </form>
+
+            <form action="/clear" method="post">
+                <button class="clear" type="submit" name="button">Clear Registrations</button>
+            </form>
+        </div> --}}
+
+        <form action="/show" method="post">
+            <button class="show" type="submit" name="button">Show All</button>
+        </form>
+
         <form action="/clear" method="post">
-        <button class="clear" type="submit" name="button">Clear Registrations</button>
+            <button class="clear" type="submit" name="button">Clear Registrations</button>
         </form>
 
 
@@ -71,11 +85,10 @@
                 {{/each}}
             </ul>
         </div>
-    </div>
+    {{!-- </div> --}}
 
-    
+
 
 </body>
 
 </html>
-

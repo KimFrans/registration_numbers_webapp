@@ -6,17 +6,22 @@ module.exports = function registrations(pool) {
     var clearMessage = ""
     var empty = "Please enter a registration number"
 
+    //add upper function to make reg(CA,CF,CL) caps
 
     async function poolNameIn(regEntered) {
 
         // console.log(regEntered)
 
+        // regEntered = await pool.query('SELECT (reg) Upper(reg)FROM regplates') 
+
+    
         const dbAccess = await pool.query('SELECT reg FROM regPlates WHERE reg = $1', [regEntered]);
 
         if (/[A-Z]{2}\s[0-9]{3}\-[0-9]{3}/g.test(regEntered) || /[A-Z]{2}\s[0-9]{5}/g.test(regEntered) || /[A-Z]{2}\-[0-9]{3}\-[0-9]{3}/g.test(regEntered)) {
             if (regEntered.length > 8 && regEntered.length <= 10) {
                 if (dbAccess.rows.length === 0) {
-                    await pool.query('insert into regPlates (reg) values($1)', [regEntered])
+                    await getTag(regEntered)
+                    // pool.query('insert into regPlates (reg) values($1)', [regEntered])
                     addedMessage = "Your registration number has been added"
                 }
                 else if(dbAccess.rows[0] = regEntered) {
@@ -25,8 +30,9 @@ module.exports = function registrations(pool) {
                 // addedMessage = "Your registration number has been added"
                 
             }
-            else{
+            else if(regEntered.length < 8 && regEntered.length > 10){
                 addedMessage = "not enough characters more or less!"
+                // console.log('in else if')
             }
             
         }
@@ -51,42 +57,23 @@ module.exports = function registrations(pool) {
         
     }
 
+    async function getTag(reg){
+        const townTag = reg.substring(0,2)
 
-    function filterRegistration(radioCheck) {
-        capeArr = []
-        stellArr = []
-        bellArr = []
-        paarArr = []
-        for (i = 0; i < regList.length; i++) {
-            if (radioCheck == "cape-town") {
-                if (regList[i].startsWith("CA")) {
-                    capeArr.push(regList[i])
-                }
-            }
-            if (radioCheck == "stellenbosch") {
-                if (regList[i].startsWith("CL")) {
-                    stellArr.push(regList[i])
-                }
-            }
-            if (radioCheck == "bellville") {
-                if (regList[i].startsWith("CY")) {
-                    bellArr.push(regList[i])
-                }
-            }
-            if (radioCheck == "paarl") {
-                if (regList[i].startsWith("CJ")) {
-                    paarArr.push(regList[i])
-                }
-            }
-            if (radioCheck == "all") {
-                return regList
-            }
-        }
+        const regTag = await pool.query('SELECT id FROM regTown WHERE townSymbol = $1', [townTag])
+        console.log(regTag.rows[0].id);
+        const insertID = await pool.query('INSERT INTO regPlates (reg, regTown_id) values ($1, $2)', [reg,regTag.rows[0].id])
+        
+        // return regTag && insertID;
+    }
+
+    async function filterRegistration(radioCheck) {
+
 
     }
 
 
-    function values() {
+    async function values() {
         return {
             addMessage: addedMessage,
             cleared: clearMessage,
@@ -95,6 +82,7 @@ module.exports = function registrations(pool) {
     }
 
     return {
+        getTag,
         filterRegistration,
         poolNameIn,
         getDBreg,

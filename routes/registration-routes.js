@@ -18,6 +18,7 @@ module.exports = function registrationRoutes(registrationName) {
 
             if (req.body.reg != "") {
                 await registrationName.poolNameIn(databaseReg);
+                // await registrationName.getTag(databaseReg)
 
                 // console.log(databaseReg)
 
@@ -53,10 +54,22 @@ module.exports = function registrationRoutes(registrationName) {
         }
     }
 
+    async function displayAll(req, res){
+        try{
+            res.render('index', {
+                registration: await registrationName.getDBreg()
+            })
+        }
+        catch(err){
+            console.log(err)
+        }
+    }
+
     return{
         home,
         getReg,
         deleteReg,
+        displayAll,
     }
 
 

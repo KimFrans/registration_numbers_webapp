@@ -12,14 +12,7 @@ CREATE TABLE regPlates(
 );
 
 
-INSERT INTO regTown (townName, townSymbol)
-VALUES ("Cape Town", "CA");
-
-INSERT INTO regTown (townName, townSymbol)
-VALUES ("Stellenbosch", "CL");
-
-INSERT INTO regTown (townName, townSymbol)
-VALUES ("Bellville", "CF");
-
-INSERT INTO regTown (townName, townSymbol)
-VALUES ("Paarl", "CJ");
+INSERT INTO regTown (townName, townSymbol) VALUES ('Cape Town', 'CA');
+INSERT INTO regTown (townName, townSymbol) VALUES ('Stellenbosch', 'CL');
+INSERT INTO regTown (townName, townSymbol) VALUES ('Bellville', 'CF');
+INSERT INTO regTown (townName, townSymbol) VALUES ('Paarl', 'CJ');

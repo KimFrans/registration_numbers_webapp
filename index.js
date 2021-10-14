@@ -43,6 +43,7 @@ app.use(bodyParser.json())
 app.get('/', registrationRoute.home);
 app.post('/reg_number', registrationRoute.getReg);
 app.post('/clear', registrationRoute.deleteReg)
+app.post('/show', registrationRoute.displayAll)
 
 
 
