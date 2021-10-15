@@ -1,5 +1,7 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
+const flash = require('express-flash');
+const session = require('express-session');
 const bodyParser = require('body-parser');
 const registrationWeb = require('./registration-factory');
 const pg = require('pg')
@@ -40,10 +42,21 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
+// initialise session middleware - flash-express depends on it
+app.use(session({
+    secret: "registrations",
+    resave: false,
+    saveUninitialized: true
+}));
+
+// initialise the flash middleware
+app.use(flash());
+
 app.get('/', registrationRoute.home);
 app.post('/reg_number', registrationRoute.getReg);
 app.post('/clear', registrationRoute.deleteReg)
 app.post('/show', registrationRoute.displayAll)
+app.post('/reg_town', registrationRoute.filtering)
 
 
 

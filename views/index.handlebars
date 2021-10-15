@@ -10,7 +10,7 @@
 
 <body>
 
-    {{!-- <div class="container"> --}}
+    <div class="container">
         <div class="header">
             <h3>Registration Numbers</h3>
         </div>
@@ -23,11 +23,14 @@
                 CY 123456 <br>
                 CJ-123-456
             </p>
-            <p>NB! Registrations must be entered in CAPS</p>
+            {{!-- <p>NB! Registrations must be entered in CAPS</p> --}}
         </div>
 
         <div class="errorMessage">
-            <span class="errorOutputMessage">{{errorMess}}</span>
+            <span class="errorOutputMessage">{{messages.errorMess}}</span>
+        </div>
+        <div class="Message">
+            <span class="OutputMessage">{{messages.Mess}}</span>
         </div>
 
         <form action="/reg_number" method="post">
@@ -36,46 +39,40 @@
             <button class="add" type="submit" name="button">Add</button>
         </form>
 
-        {{!-- <div class="message">
-            <span class="outputMessage">{{outputMessage}}</span>
-        </div> --}}
 
-        <form action="/reg_town" method="get">
+        <form action="/reg_town" method="post">
             <label class="radio-inline">
-                <input class="radio-btn" type="radio" name="town" value="cape-town">Cape Town
+                <input class="radio-btn" type="radio" name="town" value="CA">Cape Town
             </label>
             <label class="radio-inline">
-                <input class="radio-btn" type="radio" name="town" value="stellenbosch">Stellenbosch
+                <input class="radio-btn" type="radio" name="town" value="CL">Stellenbosch
             </label>
             <label class="radio-inline">
-                <input class="radio-btn" type="radio" name="town" value="bellville">Bellville
+                <input class="radio-btn" type="radio" name="town" value="CF">Bellville
             </label>
             <label class="radio-inline">
-                <input class="radio-btn" type="radio" name="town" value="paarl">Paarl
+                <input class="radio-btn" type="radio" name="town" value="CJ">Paarl
             </label>
-            <label class="radio-inline">
+            {{!-- <label class="radio-inline">
                 <input class="radio-btn" type="radio" name="town" value="all">All
-            </label>
+            </label> --}}
             <button class="show" type="submit" name="show-button">Show Registration</button>
         </form>
 
-        {{!-- <div class="buttons">
-            <form action="/show" method="post">
-                <button class="show" type="submit" name="button">Show All</button>
-            </form>
+        <div class="row">
+            <div class="col-6">
+                <form action="/show" method="post">
+                    <button class="show" type="submit" name="button">Show All</button>
+                </form>
+            </div>
 
-            <form action="/clear" method="post">
-                <button class="clear" type="submit" name="button">Clear Registrations</button>
-            </form>
-        </div> --}}
+            <div class="col-6">
+                <form action="/clear" method="post">
+                    <button class="clear" type="submit" name="button">Clear Registrations</button>
+                </form>
+            </div>
 
-        <form action="/show" method="post">
-            <button class="show" type="submit" name="button">Show All</button>
-        </form>
-
-        <form action="/clear" method="post">
-            <button class="clear" type="submit" name="button">Clear Registrations</button>
-        </form>
+        </div>
 
 
         <div id="reg-display">
@@ -85,7 +82,15 @@
                 {{/each}}
             </ul>
         </div>
-    {{!-- </div> --}}
+
+        <div id="regses">
+            <ul id="regsies">
+                {{#each regies}}
+                <li>{{this.reg}}</li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
 
 
 
