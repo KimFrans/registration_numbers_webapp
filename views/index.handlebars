@@ -20,16 +20,16 @@
             <p>
                 Formats that are accepted : <br>
                 CA 123-456 <br>
-                CY 123456 <br>
+                CF 123456 <br>
                 CJ-123-456
             </p>
-            {{!-- <p>NB! Registrations must be entered in CAPS</p> --}}
+            <p>NB: Registrations must be entered in CAPS!</p>
         </div>
 
         <div class="errorMessage">
             <span class="errorOutputMessage">{{messages.errorMess}}</span>
         </div>
-        <div class="Message">
+        <div class="message">
             <span class="OutputMessage">{{messages.Mess}}</span>
         </div>
 
@@ -53,9 +53,6 @@
             <label class="radio-inline">
                 <input class="radio-btn" type="radio" name="town" value="CJ">Paarl
             </label>
-            {{!-- <label class="radio-inline">
-                <input class="radio-btn" type="radio" name="town" value="all">All
-            </label> --}}
             <button class="show" type="submit" name="show-button">Show Registration</button>
         </form>
 
