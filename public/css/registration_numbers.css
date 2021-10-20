@@ -3,8 +3,6 @@
     color: black;
     font-weight: bold;
     background-color: palevioletred;
-    /* padding-bottom: 0.3%; */
-    /* padding-top: 1%; */
 }
 
 body{
@@ -21,10 +19,11 @@ body{
     text-align: center;
 }
 
-.errorMessage{
-    margin-left: 35%;
-    padding-top: 1%;
-    padding-bottom: 1%;
+.errorOutputMessage{
+    text-align: center;
+    /* margin-left: 35%; */
+    /* padding-top: 1%; */
+    /* padding-bottom: 1%; */
     color: red;
 }
 
@@ -33,9 +32,10 @@ body{
     font-size: 20px;
 }
 
-.message {
-    margin-left: 30%;
-    padding-top: 1%;
+.OutputMessage{
+    text-align: center;
+    /* margin-left: 30%; */
+    /* padding-top: 1%; */
     color: rgb(10, 77, 4)
 }
 
@@ -59,40 +59,13 @@ body{
     display: inline;
 }
 
-/* .buttons .add{
-    border-radius: 20px;
-    margin-left: 30%;
-    font-size: 20px;
-    margin-top: 2%;
-} */
-
-
-/* .buttons .add:hover{
-    background-color: red;
-    color: wheat;
+p{
+    text-align: center;
 }
 
-.display-button .show{
-    margin-top: 2%;
-    margin-left: 25%;
-    border-radius: 20px;
-    margin-right: 5%;
-    font-size: 20px;
+.row{
+    display: inline;
 }
-
-.display-button .show:hover{
-    background-color: red;
-    color: white;
-} */
-
-/* .buttons .clearBtn{
-    float: right;
-} */
-
-/* .buttons .clear:hover{
-    background-color: red;
-    color: white;
-} */
 
 #reg-display li{
     padding-top: 1.5%;

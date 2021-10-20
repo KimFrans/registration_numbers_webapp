@@ -16,7 +16,7 @@ describe('The registration web app', function () {
 
     beforeEach(async function () {
         // clean the tables before each test run
-        await pool.query("delete from my_registrations;");
+        await pool.query("delete from regPlates;");
     });
 
     it('should get the registration from the database and display it', async function () {

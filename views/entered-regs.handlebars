@@ -15,21 +15,26 @@
             <h3>Registration Numbers</h3>
         </div>
 
+
         <p>
             Formats that are accepted : <br>
             CA 123-456; CF 123456; CJ-123-456
         </p>
         <p>NB: Registrations must be entered in CAPS!</p>
 
+
         <span class="errorOutputMessage">{{messages.errorMess}}</span>
 
+
         <span class="OutputMessage">{{messages.Mess}}</span>
+
 
         <form action="/reg_number" method="post">
             <label for="reg_num">Registration Number: </label>
             <input class="textNum" name="reg" type="text" placeholder="enter a registration">
             <button class="add" type="submit" name="button">Add</button>
         </form>
+
 
         <form action="/reg_town" method="post">
             <label class="radio-inline">
@@ -47,6 +52,7 @@
             <button class="show" type="submit" name="show-button">Show Registration</button>
         </form>
 
+
         <form action="/show" method="post">
             <button class="show" type="submit" name="button">Show All</button>
         </form>
@@ -55,22 +61,14 @@
             <button class="clear" type="submit" name="button">Clear Registrations</button>
         </form>
 
-        <div id="reg-display">
-            <ul id="regs">
-                {{#each registration}}
-                <li>{{this.reg}}</li>
-                {{/each}}
-            </ul>
-        </div>
-
-        <div id="regses">
-            <ul id="regsies">
-                {{#each regies}}
-                <li>{{this.reg}}</li>
-                {{/each}}
-            </ul>
-        </div>
+        <ul id="regsies">
+            {{!-- {{#each regies}} --}}
+            <li>{{urlRegistration}}</li>
+            {{!-- {{/each}} --}}
+        </ul>
     </div>
+
+
 
 </body>
 

@@ -24,7 +24,7 @@ module.exports = function registrationRoutes(registrationName) {
                         if (databaseReg.length > 8 && databaseReg.length <= 10) {
 
                             await registrationName.poolNameIn(databaseReg);
-                            
+
                             req.flash('Mess', 'Your registration number has been added ');
 
                             res.render('index', {
@@ -45,7 +45,7 @@ module.exports = function registrationRoutes(registrationName) {
 
                     }
                     else if (!/[A-Z]{2}\s[0-9]{3}\-[0-9]{3}/g.test(databaseReg) || !/[A-Z]{2}\s[0-9]{5}/g.test(databaseReg) || !/[A-Z]{2}\-[0-9]{3}\-[0-9]{3}/g.test(databaseReg)) {
-                        
+
                         req.flash('errorMess', 'does not match check the format!');
                         res.render('index', {
                             registration: await registrationName.getDBreg()
@@ -53,7 +53,7 @@ module.exports = function registrationRoutes(registrationName) {
 
                     }
 
-                }    
+                }
                 // else  {
                 //     req.flash('errorMess', 'This registration already exists');
                 //     res.render('index', {
@@ -62,7 +62,7 @@ module.exports = function registrationRoutes(registrationName) {
                 // }
 
             }
-            if(databaseReg === await registrationName.getDBreg())  {
+            if (databaseReg === await registrationName.getDBreg()) {
                 req.flash('errorMess', 'This registration already exists');
                 res.render('index', {
                     registration: await registrationName.getDBreg()
@@ -71,10 +71,10 @@ module.exports = function registrationRoutes(registrationName) {
 
             else if (databaseReg == "") {
                 req.flash('errorMess', 'Please enter a registration number');
-             
+
                 res.render('index', {
                     registration: await registrationName.getDBreg(),
-                    
+
                 })
 
             }
@@ -103,17 +103,37 @@ module.exports = function registrationRoutes(registrationName) {
         try {
             const radioBtn = req.body.town;
             // console.log(radioBtn);
+            if (radioBtn != undefined) {
+                
+                const regies = await registrationName.filterRegistration(radioBtn)
+                console.log(regies);
+                res.render('index', {
+                    regies
 
-            const regies = await registrationName.filterRegistration(radioBtn)
-            console.log(regies);
-            res.render('index', {
-                regies
+                })
+            }
+            else if(radioBtn == undefined) {
+                console.log('no town')
+                req.flash('errorMess', 'Please select a town');
+            }
 
-            })
+            // const regies = await registrationName.filterRegistration(radioBtn)
+            // console.log(regies);
+            // res.render('index', {
+            //     regies
+
+            // })
         }
         catch (err) {
             console.log(err);
         }
+    }
+
+    async function enteredURL(){
+        let enteredReg = req.params.entered;
+        res.render('entered-regs', {
+            urlRegistration: enteredReg,
+        });
     }
 
     async function displayAll(req, res) {
@@ -133,6 +153,7 @@ module.exports = function registrationRoutes(registrationName) {
         deleteReg,
         displayAll,
         filtering,
+        enteredURL,
     }
 
 
