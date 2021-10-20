@@ -6,7 +6,6 @@ module.exports = function registrations(pool) {
     //add upper function to make reg(CA,CF,CL) caps
 
     async function poolNameIn(regEntered) {
-
         // regEntered = await pool.query('SELECT reg Upper(reg) FROM regplates') 
         const dbAccess = await pool.query('SELECT reg FROM regPlates WHERE reg = $1', [regEntered]);
 
@@ -16,7 +15,7 @@ module.exports = function registrations(pool) {
                 if (regEntered.length > 8 && regEntered.length <= 10) {
                     if (dbAccess.rows.length === 0) {
                         await getTag(regEntered)
-                        // pool.query('insert into regPlates (reg) values($1)', [regEntered])
+                        // pool.query('insert into regPlates (reg) values($1)', [regEntered])reg_number
                         addedMessage = "Your registration number has been added"
                        
                     }
