@@ -75,11 +75,6 @@ module.exports = function registrations(pool) {
 
     }
 
-    async function getDBinfo(){
-        const gettingName = await pool.query('SELECT * FROM namesGreetedDB') 
-
-        return gettingName.rows;
-    }
 
     async function values() {
         return {
@@ -90,7 +85,6 @@ module.exports = function registrations(pool) {
 
     return {
         getTag,
-        getDBinfo,
         filterRegistration,
         poolNameIn,
         getDBreg,
