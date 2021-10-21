@@ -6,6 +6,6 @@ node_js:
   - 12
 before_script:
   - psql -c 'create database registrationtest;' -U postgres
-  - psql -U postgres -d registrationtest -a -f greet-database.sql
+  - psql -U postgres -d registrationtest -a -f reg-database.sql
 services:
   - postgresql;
