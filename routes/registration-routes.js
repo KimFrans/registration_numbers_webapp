@@ -73,10 +73,8 @@ module.exports = function registrationRoutes(registrationName) {
                 req.flash('errorMess', 'Please enter a registration number');
 
                 res.render('index', {
-                    registration: await registrationName.getDBreg(),
-
+                    registration: await registrationName.getDBreg()
                 })
-
             }
 
         }
@@ -109,7 +107,6 @@ module.exports = function registrationRoutes(registrationName) {
                 console.log(regies);
                 res.render('index', {
                     regies
-
                 })
             }
             else if(radioBtn == undefined) {

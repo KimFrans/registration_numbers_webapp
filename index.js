@@ -59,7 +59,6 @@ app.post('/show', registrationRoute.displayAll)
 app.post('/reg_town', registrationRoute.filtering)
 
 
-
 const PORT = process.env.PORT || 3031
 
 app.listen(PORT, function () {

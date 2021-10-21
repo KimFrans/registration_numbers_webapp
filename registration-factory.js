@@ -17,28 +17,20 @@ module.exports = function registrations(pool) {
                         await getTag(regEntered)
                         // pool.query('insert into regPlates (reg) values($1)', [regEntered])reg_number
                         addedMessage = "Your registration number has been added"
-                       
                     }
                     else if (dbAccess.rows[0] = regEntered) {
                         addedMessage = 'This registration already exists'
                     }
-    
                 }
                 else {
                     addedMessage = "not enough characters more or less!"
-                    
                 }
-    
             }
             else if (!/[A-Z]{2}\s[0-9]{3}\-[0-9]{3}/g.test(regEntered) || !/[A-Z]{2}\s[0-9]{5}/g.test(regEntered) || !/[A-Z]{2}\-[0-9]{3}\-[0-9]{3}/g.test(regEntered)) {
                 addedMessage = "does not match check the format!"
-    
             }
-
         }
-
         return addedMessage;
-
     }
 
     async function getDBreg() {
