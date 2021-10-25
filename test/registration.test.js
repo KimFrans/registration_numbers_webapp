@@ -19,10 +19,10 @@ describe('The registration web app', function () {
         await pool.query("delete from regPlates;");
     });
 
-    it('Should check if the registration already exists', async function (){
+    it('Should get the registration and add it to the database', async function (){
         await registrationTest.poolNameIn("CA 123456")
 
-        assert.equal("This registration already exists", await registrationTest.poolNameIn("CA 123456"))
+        assert.equal("Your registration number has been added", await registrationTest.poolNameIn("CA 123456"))
     });
 
     it('Should check if the registration matches the format', async function (){
