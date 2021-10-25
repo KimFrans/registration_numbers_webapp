@@ -21,9 +21,17 @@
         </p>
         <p>NB: Registrations must be entered in CAPS!</p>
 
-        <span class="errorOutputMessage">{{messages.errorMess}}</span>
+        {{#if messages.errorMess}} 
+           <div class="errorOutputMessage">{{messages.errorMess}}</div>    
+        {{/if}}
 
-        <span class="OutputMessage">{{messages.Mess}}</span>
+        {{#if messages.Mess}}    
+            <div class="OutputMessage">{{messages.Mess}}</div>    
+        {{/if}}
+
+        {{!-- <span class="errorOutputMessage">{{messages.errorMess}}</span> --}}
+
+        {{!-- <span class="OutputMessage">{{messages.Mess}}</span> --}}
 
         <form action="/reg_number" method="post">
             <label for="reg_num">Registration Number: </label>

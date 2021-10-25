@@ -9,7 +9,7 @@ module.exports = function registrations(pool) {
         // regEntered = await pool.query('SELECT reg Upper(reg) FROM regplates') 
         const dbAccess = await pool.query('SELECT reg FROM regPlates WHERE reg = $1', [regEntered]);
 
-        if(regEntered != await getDBreg()){
+        // if(regEntered != await getDBreg()){
 
             if (/[A-Z]{2}\s[0-9]{3}\-[0-9]{3}/g.test(regEntered) || /[A-Z]{2}\s[0-9]{5}/g.test(regEntered) || /[A-Z]{2}\-[0-9]{3}\-[0-9]{3}/g.test(regEntered)) {
                 if (regEntered.length > 8 && regEntered.length <= 10) {
@@ -18,7 +18,7 @@ module.exports = function registrations(pool) {
                         // pool.query('insert into regPlates (reg) values($1)', [regEntered])reg_number
                         addedMessage = "Your registration number has been added"
                     }
-                    else if (dbAccess.rows[0] = regEntered) {
+                    else if (dbAccess.rows[0] == regEntered) {
                         addedMessage = 'This registration already exists'
                     }
                 }
@@ -29,7 +29,7 @@ module.exports = function registrations(pool) {
             else if (!/[A-Z]{2}\s[0-9]{3}\-[0-9]{3}/g.test(regEntered) || !/[A-Z]{2}\s[0-9]{5}/g.test(regEntered) || !/[A-Z]{2}\-[0-9]{3}\-[0-9]{3}/g.test(regEntered)) {
                 addedMessage = "does not match check the format!"
             }
-        }
+        // }
         return addedMessage;
     }
 
@@ -62,8 +62,12 @@ module.exports = function registrations(pool) {
     async function filterRegistration(radioCheck) {
         const checkTownID = await regTag(radioCheck)
         const getID = await pool.query('SELECT reg FROM regPlates WHERE regTown_id = $1', [checkTownID])
-        
+        // if(getID.rows == ""){
+        //     noTowns = "There are no registrations for the town selected"
+        // }
         return getID.rows;
+
+        
 
     }
 

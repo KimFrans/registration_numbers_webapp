@@ -34,15 +34,8 @@ describe('The registration web app', function () {
     it('should get the registration from the database and display it', async function () {
 
         await registrationTest.poolNameIn("CA 123456")
-        await registrationTest.getDBreg()
 
-        var arrayValue = []
-        var valueFromDB = await registrationTest.getDBreg();
-        valueFromDB.forEach(element => {
-            arrayValue.push({ reg: element.reg })
-        });
-
-        assert.deepEqual([{ reg: "CA 123456" }], arrayValue)
+        assert.deepEqual([{ reg: "CA 123456" }], await registrationTest.getDBreg())
 
     });
 
@@ -52,23 +45,18 @@ describe('The registration web app', function () {
         await registrationTest.poolNameIn("CJ 123456")
         await registrationTest.getDBreg()
 
-        var arrayValue = []
-        var valueFromDB = await registrationTest.filterRegistration("CA");
-        valueFromDB.forEach(element => {
-            arrayValue.push({ reg: element.reg })
-        });
-
-        assert.deepEqual([{ reg: "CA 123456" }], arrayValue)
+        assert.deepEqual([{ reg: "CA 123456" }], await registrationTest.filterRegistration("CA"))
 
     });
 
-    it('Should delete all names from the database', async function (){
+    it('Should delete all registrations from the database', async function (){
+        await registrationTest.poolNameIn("CA 123456")
+        await registrationTest.poolNameIn("CJ 123-987")
         await registrationTest.getDBreg()
 
         assert.equal(undefined, await registrationTest.deleteRecords())
     });
     
-
 
     after(function () {
         pool.end();
