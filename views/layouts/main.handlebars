@@ -19,13 +19,13 @@
             let successMessage = document.querySelector('.OutputMessage')
             let errorMessage = document.querySelector('.errorOutputMessage')
 
-            if(successMessage || errorMessage){
-                setTimeout(function () 
-                { errorMessage.innerHTML = "";
-                successMessage.innerHTML = "" 
-                }, 2000);
-            }
-            
+            setTimeout(function () {
+                successMessage.innerHTML = ""
+            }, 2000);
+            setTimeout(function () {
+                errorMessage.innerHTML = ""
+            }, 2000);
+
         });
     </script>
 

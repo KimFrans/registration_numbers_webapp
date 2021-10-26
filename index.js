@@ -30,6 +30,15 @@ const app = express();
 const registrationName = registrationWeb(pool)
 const registrationRoute = regRoute(registrationName)
 
+// initialise session middleware - flash-express depends on it
+app.use(session({
+    secret: "registrations",
+    resave: false,
+    saveUninitialized: true
+}));
+
+// initialise the flash middleware
+app.use(flash());
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main', layoutsDir: __dirname + '/views/layouts' }));
 app.set('view engine', 'handlebars');
@@ -41,16 +50,6 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
-
-// initialise session middleware - flash-express depends on it
-app.use(session({
-    secret: "registrations",
-    resave: false,
-    saveUninitialized: true
-}));
-
-// initialise the flash middleware
-app.use(flash());
 
 app.get('/', registrationRoute.home);
 app.post('/reg_number', registrationRoute.getReg);

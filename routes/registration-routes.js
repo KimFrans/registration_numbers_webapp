@@ -64,12 +64,6 @@ module.exports = function registrationRoutes(registrationName) {
                 }
 
             }
-            // if (databaseReg === await registrationName.getDBreg()) {
-            //     req.flash('errorMess', 'This registration already exists');
-            //     res.render('index', {
-            //         registration: await registrationName.getDBreg()
-            //     });
-            // }
 
             else if (databaseReg == "") {
                 req.flash('errorMess', 'Please enter a registration number');
@@ -103,7 +97,7 @@ module.exports = function registrationRoutes(registrationName) {
         try {
             const radioBtn = req.body.town;
             // console.log(radioBtn);
-            if (radioBtn != undefined) {
+            if (radioBtn != null) {
                 if (await registrationName.filterRegistration(radioBtn) != "") {
 
                     const regies = await registrationName.filterRegistration(radioBtn)
@@ -115,25 +109,16 @@ module.exports = function registrationRoutes(registrationName) {
                 else {
                     console.log('There are no registrations for the selected town')
                     req.flash('errorMess', 'There are no registrations for the selected town');
+                    res.redirect("/")
                 }
 
-                // const regies = await registrationName.filterRegistration(radioBtn)
-                // console.log(regies);
-                // res.render('index', {
-                //     regies
-                // })
             }
             else {
                 console.log('Please select a town')
                 req.flash('errorMess', 'Please select a town');
+                res.redirect("/")
             }
-
-            // const regies = await registrationName.filterRegistration(radioBtn)
-            // console.log(regies);
-            // res.render('index', {
-            //     regies
-
-            // })
+            
         }
         catch (err) {
             console.log(err);
