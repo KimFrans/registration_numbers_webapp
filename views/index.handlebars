@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/css/registration_numbers.css">
     <title>Main</title>
 </head>
 
@@ -21,12 +22,12 @@
         </p>
         <p>NB: Registrations must be entered in CAPS!</p>
 
-        {{#if messages.errorMess}} 
-           <div class="errorOutputMessage">{{messages.errorMess}}</div>   
+        {{#if messages.errorMess}}
+        <div class="errorOutputMessage">{{messages.errorMess}}</div>
         {{/if}}
 
-        {{#if messages.Mess}}    
-            <div class="OutputMessage">{{messages.Mess}}</div>    
+        {{#if messages.Mess}}
+        <div class="OutputMessage">{{messages.Mess}}</div>
         {{/if}}
 
         {{!-- <span class="errorOutputMessage">{{messages.errorMess}}</span> --}}
