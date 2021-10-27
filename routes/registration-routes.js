@@ -109,7 +109,7 @@ module.exports = function registrationRoutes(registrationName) {
                 else {
                     console.log('There are no registrations for the selected town')
                     req.flash('errorMess', 'There are no registrations for the selected town');
-                    res.redirect("/")
+                    res.render("index")
                 }
 
             }
